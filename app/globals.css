@@ -1,0 +1,169 @@
+@import "tailwindcss";
+
+/* Colors and type. Change the palette here; every page reads these. */
+@theme {
+  --color-bone: #eeede7;
+  --color-card: #f7f6f2;
+  --color-raised: #e3e1d9;
+  --color-ink: #141413;
+  --color-ink-2: #46453f;
+  --color-muted: #66655e;
+  --color-line: rgb(20 20 19 / 0.12);
+  --color-cobalt: #2340d8;
+  --color-cobalt-deep: #1b31a8;
+  --font-sans: "Archivo Variable", Archivo, ui-sans-serif, system-ui, sans-serif;
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    background: var(--color-bone);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    font-size: 16px;
+    line-height: 1.55;
+    overflow-x: hidden;
+  }
+  ::selection {
+    background: var(--color-cobalt);
+    color: #fff;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-cobalt);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* Expanded Archivo for display type. */
+  .display {
+    font-stretch: 125%;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+  .display-sm {
+    font-stretch: 125%;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+  /* Condensed Archivo for meta: years, disciplines, counts. */
+  .meta {
+    font-stretch: 75%;
+    font-size: 14px;
+    line-height: 20px;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.01em;
+  }
+
+  /* The title block that opens every section, like the corner of a drawing sheet. */
+  .sheet-head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    gap: 16px;
+    border-top: 1px solid var(--color-ink);
+    padding-top: 12px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 48px;
+    padding: 0 20px;
+    border-radius: 4px;
+    font-weight: 500;
+    font-size: 15px;
+    transition:
+      background-color 160ms var(--ease-out-soft),
+      color 160ms var(--ease-out-soft),
+      border-color 160ms var(--ease-out-soft),
+      transform 120ms var(--ease-out-soft);
+  }
+  .btn:active {
+    transform: scale(0.98);
+  }
+  .btn-primary {
+    background: var(--color-cobalt);
+    color: #fff;
+  }
+  .btn-primary:hover {
+    background: var(--color-cobalt-deep);
+  }
+  .btn-secondary {
+    border: 1px solid rgb(20 20 19 / 0.25);
+    color: var(--color-ink);
+  }
+  .btn-secondary:hover {
+    border-color: var(--color-ink);
+    background: var(--color-card);
+  }
+
+  .link {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    text-decoration-color: rgb(20 20 19 / 0.35);
+    transition: text-decoration-color 160ms var(--ease-out-soft), color 160ms var(--ease-out-soft);
+  }
+  .link:hover {
+    text-decoration-color: currentColor;
+    color: var(--color-cobalt-deep);
+  }
+
+  .field {
+    width: 100%;
+    height: 44px;
+    border: 1px solid rgb(20 20 19 / 0.2);
+    border-radius: 4px;
+    background: var(--color-card);
+    padding: 0 12px;
+    font: inherit;
+    font-size: 16px;
+    color: var(--color-ink);
+    transition: border-color 160ms var(--ease-out-soft);
+  }
+  textarea.field {
+    height: auto;
+    padding: 10px 12px;
+    resize: vertical;
+  }
+  .field:hover {
+    border-color: rgb(20 20 19 / 0.4);
+  }
+  .field:focus-visible {
+    outline: 2px solid var(--color-cobalt);
+    outline-offset: 0;
+    border-color: var(--color-cobalt);
+  }
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1360px;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+@media (min-width: 768px) {
+  .wrap {
+    padding-inline: 32px;
+  }
+}
